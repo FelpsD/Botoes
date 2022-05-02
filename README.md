@@ -1,7 +1,7 @@
 # Projeto passa ou repassa
-Grupo: Felippe Destri Ferreira 10747012
-       Giovane Piola Mistico 10309138
-       Joyce Mafra Palotti 10274040
+Grupo: Felippe Destri Ferreira (10747012),
+       Giovane Piola Mistico (10309138), 
+       Joyce Mafra Palotti (10274040)
 
 ## Entrega 1 - Esquemático da arquitetura do projeto
 
