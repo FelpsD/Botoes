@@ -21,4 +21,4 @@ No arquivo "Fluxograma Jogo.pdf" descreve-se as possíveis ações a serem tomad
 
 ## Vídeo 
 
-Fizemos um vídeo explicando o nosso projeto e o resultado que obtivemos. Como ficou muito longo temos que disponibilizá-lo por meio [deste link] (https://photos.app.goo.gl/7pNE44BSPyeJyUft8), caso tenham algum problema para abrí-lo nos avise.
+Fizemos um vídeo explicando o nosso projeto e o resultado que obtivemos. Como ficou muito longo temos que disponibilizá-lo por meio deste link (https://photos.app.goo.gl/7pNE44BSPyeJyUft8), caso tenham algum problema para abrí-lo nos avise.
