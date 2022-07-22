@@ -19,3 +19,6 @@ No arquivo "Sistemas Embarcados.pdf" pode-se verificar um diagrama de blocos que
 
 No arquivo "Fluxograma Jogo.pdf" descreve-se as possíveis ações a serem tomadas ao longo de uma rodada do jogo, assim como a lógica que o projeto vai seguir para cada caso.
 
+## Vídeo 
+
+Fizemos um vídeo explicando o nosso projeto e o resultado que obtivemos. Como ficou muito longo temos que disponibilizá-lo por meio [deste link] (https://photos.app.goo.gl/7pNE44BSPyeJyUft8), caso tenham algum problema para abrí-lo nos avise.
