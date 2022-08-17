@@ -1,3 +1,21 @@
+/*
+ * 			Bot2TCP.c
+ *
+ * Este programa cliente foi desenvolvido para detectar a ativacao de dois botoes distintos 
+ * e enviar uma mensagem para o servidor TCP informando qual deles foi pressionado
+ *
+ * Funcao:     Enviar para o servidor qual botao foi pressionado
+ * Plataforma: Linux (ARM)
+ * Compilar:   gcc -Wall ClienteMonoTCP.c -o ClienteMonoTCP
+ * Uso:        ./Bot2TCP Endereco_IP_ou_nome_do_servidor porta_do_servidor
+ *
+ * Autor:      Felippe Destri Ferreira 10747012 
+ *             Giovane Piola Mistico 10309138 
+ *              Joyce Mafra Palotti 10274040
+ *
+ * Referencia: Jose Martins Junior e Toradex
+ *
+ */
  
 #include <stdio.h>
 #include <stdlib.h>
@@ -19,24 +37,27 @@
 
 pthread_t id,id2;
 int flag = 0;  //mudar para bol, flag que libera e trava threads, consequentemente os botoes
-int ready; //mudar para bol, sem uso por enquanto
 int fd1;
 int fd2;
 char value1;
 char value2;
-char msg1[6];
-char msg2[6];
 struct pollfd poll_gpio1;
 struct pollfd poll_gpio2;
 char buf[MAX_FLOW_SIZE];
 
-void * minha_thread (void *apelido) { //thread responsavel pelo primeiro botao
+/*
+ *******************************************************************************
+               Thread responsavel pelo primeiro botao
+ *******************************************************************************
+ */
+
+void * minha_thread (void *apelido) {
 	while (1) {
         poll(&poll_gpio1, 1, -1);
-        if((poll_gpio1.revents & POLLPRI) == POLLPRI){
+        if((poll_gpio1.revents & POLLPRI) == POLLPRI){ //polling
             lseek(fd1, 0, SEEK_SET);
             read(fd1, &value1, 1);
-          	strcpy(buf, "Gato1");
+          	strcpy(buf, "Gato1"); // buf recebe string
 			printf("Interrupt GPIO val: %s\n", buf); 
             flag = 1;
             sleep(3); //sem isso o server quebra, pois envia dois msgs muito rapido
@@ -47,14 +68,21 @@ void * minha_thread (void *apelido) { //thread responsavel pelo primeiro botao
         }
 	}
 }
+/*----------------------------------------------------------------------------*/
 
+/*
+ *******************************************************************************
+               Thread responsavel pelo segundo botao
+ *******************************************************************************
+ */
+ 
 void * minha_thread_2(void *apelido) { //thread responsavel pelo segundo botao
 	while (1) {
         poll(&poll_gpio2, 1, -1);
-        if((poll_gpio2.revents & POLLPRI) == POLLPRI){
+        if((poll_gpio2.revents & POLLPRI) == POLLPRI){ //polling
             lseek(fd2, 0, SEEK_SET);
             read(fd2, &value1, 1);
-            strcpy(buf, "Dogo2");
+            strcpy(buf, "Dogo2");// buf recebe string
             printf("Interrupt GPIO val: %s\n", buf); 
             flag = 1;
             sleep(3); //sem isso o server quebra, pois envia dois msgs muito rapido
@@ -65,7 +93,13 @@ void * minha_thread_2(void *apelido) { //thread responsavel pelo segundo botao
         }
 	}
 }
+/*----------------------------------------------------------------------------*/
 
+/*
+ *******************************************************************************
+               Comeco da main, onde os inputs sao configurados
+ *******************************************************************************
+ */
 
 int main(int argc, char *argv[]){
 	int sockId, serverPort, sentBytes, recvBytes, connId;
@@ -103,7 +137,7 @@ int main(int argc, char *argv[]){
     write(fd2, "rising", 6); // configure as rising edge
     close(fd2);
     
-    
+/*----------------------------------------------------------------------------*/
     
 /*
  *******************************************************************************
